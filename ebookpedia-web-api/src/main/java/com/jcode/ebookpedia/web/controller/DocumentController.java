@@ -16,7 +16,6 @@ public class DocumentController {
  
     @RequestMapping("/document/{id}")
     public Document message(@PathVariable Long id) {
- 
     	Document document = new Document();
     	document.setId(id);
         return document;

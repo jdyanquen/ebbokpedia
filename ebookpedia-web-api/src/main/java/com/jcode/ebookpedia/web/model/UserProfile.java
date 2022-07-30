@@ -18,6 +18,13 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "USER_PROFILES")
 public class UserProfile implements BaseBean {
@@ -44,51 +51,13 @@ public class UserProfile implements BaseBean {
     )
 	private Set<Permission> permissions = new HashSet<>();
 
-	// Methods
 	
-	public UserProfile() {
-		
-	}
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, type);
-	}
-
-	public Set<Permission> getPermissions() {
-		return permissions;
-	}
-
-	public void setPermissions(Set<Permission> permissions) {
-		this.permissions = permissions;
-	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == this)
 			return true;
 		return obj instanceof UserProfile && Objects.equals(this.getId(), ((UserProfile)obj).getId());
-	}
-
-	@Override
-	public String toString() {
-		return "UserProfile [id=" + id + ", type=" + type + "]";
 	}
 
 }

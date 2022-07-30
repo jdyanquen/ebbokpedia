@@ -21,6 +21,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "USER_ACCOUNTS")
 public class UserAccount implements BaseBean {
@@ -83,124 +90,13 @@ public class UserAccount implements BaseBean {
     )
 	private Set<UserProfile> userProfiles = new HashSet<>();
 
-	// Methods
-
-	public UserAccount() {
-		
-	}
 	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	public String getSsoId() {
-		return ssoId;
-	}
-
-	public void setSsoId(String ssoId) {
-		this.ssoId = ssoId;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
-
-	public String getWebsite() {
-		return website;
-	}
-
-	public void setWebsite(String website) {
-		this.website = website;
-	}
-
-	public Date getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
-
-	public Date getLastActivity() {
-		return lastActivity;
-	}
-
-	public void setLastActivity(Date lastActivity) {
-		this.lastActivity = lastActivity;
-	}
-
-	public Date getMemberFrom() {
-		return memberFrom;
-	}
-
-	public void setMemberFrom(Date memberFrom) {
-		this.memberFrom = memberFrom;
-	}
-
-	public Set<UserProfile> getUserProfiles() {
-		return userProfiles;
-	}
-
-	public void setUserProfiles(Set<UserProfile> userProfiles) {
-		this.userProfiles = userProfiles;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, ssoId);
-	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == this)
 			return true;
 		return obj instanceof UserAccount && Objects.equals(this.getId(), ((UserAccount)obj).getId());
-	}
-
-	@Override
-	public String toString() {
-		return "UserAccount [id=" + id + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", email=" + email + "]";
 	}
 
 }

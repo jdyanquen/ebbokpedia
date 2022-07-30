@@ -3,6 +3,31 @@ package com.jcode.ebookpedia.web.model;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@Entity
+@Table(name = "DOCUMENTS")
 public class Document implements BaseBean {
 
 	/** Serial Version UUID */
@@ -10,152 +35,65 @@ public class Document implements BaseBean {
 
 	// Properties
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "documents_id_seq")
+	@SequenceGenerator(name = "documents_id_seq", sequenceName = "documents_id_seq", allocationSize = 1)
 	private Long id;
 
+	@NotEmpty
+	@Column(name = "COVER_ID", unique = true, nullable = false)
 	private String coverId;
 
+	@NotEmpty
+	@Column(name = "ISBN", nullable = false)
 	private String isbn;
 
+	@NotEmpty
+	@Column(name = "TITLE", nullable = false)
 	private String title;
 
+	@NotEmpty
+	@Column(name = "AUTHORS", nullable = false)
 	private String authors;
 
+	@NotEmpty
+	@Column(name = "PUBLISHER", nullable = false)
 	private String publisher;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="LANGUAGE_ID")
 	private Language language;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="FILE_TYPE_ID")
 	private FileType fileType;
 
-	private Quality quality;
+	@Column(name = "FILE_SIZE")
+	private Long fileSize;
 
-	private String fileSize;
-
+	@Column(name = "YEAR")
 	private Integer year;
 
+	@Column(name = "EDITION")
 	private Integer edition;
 
+	@Column(name = "PAGES")
 	private Integer pages;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="DOCUMENT_DETAIL_ID")
+	private DocumentDetail documentDetail;
 
+	@NotEmpty
+	@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "DOCUMENTS_CATEGORIES", 
+        joinColumns = { @JoinColumn(name = "DOCUMENT_ID") }, 
+        inverseJoinColumns = { @JoinColumn(name = "CATEGORY_ID") }
+    )
 	private Set<Category> categories;
 
 	// Constructor
-
-	public Document() {
-	}
-
-	// Getters and setters
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getCoverId() {
-		return coverId;
-	}
-
-	public void setCoverId(String coverId) {
-		this.coverId = coverId;
-	}
-
-	public String getIsbn() {
-		return isbn;
-	}
-
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getAuthors() {
-		return authors;
-	}
-
-	public void setAuthors(String authors) {
-		this.authors = authors;
-	}
-
-	public String getPublisher() {
-		return publisher;
-	}
-
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
-
-	public Language getLanguage() {
-		return language;
-	}
-
-	public void setLanguage(Language language) {
-		this.language = language;
-	}
-
-	public FileType getFileType() {
-		return fileType;
-	}
-
-	public void setFileType(FileType fileType) {
-		this.fileType = fileType;
-	}
-
-	public Quality getQuality() {
-		return quality;
-	}
-
-	public void setQuality(Quality quality) {
-		this.quality = quality;
-	}
-
-	public String getFileSize() {
-		return fileSize;
-	}
-
-	public void setFileSize(String fileSize) {
-		this.fileSize = fileSize;
-	}
-
-	public Integer getYear() {
-		return year;
-	}
-
-	public void setYear(Integer year) {
-		this.year = year;
-	}
-
-	public Integer getEdition() {
-		return edition;
-	}
-
-	public void setEdition(Integer edition) {
-		this.edition = edition;
-	}
-
-	public Integer getPages() {
-		return pages;
-	}
-
-	public void setPages(Integer pages) {
-		this.pages = pages;
-	}
-
-	public Set<Category> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(Set<Category> categories) {
-		this.categories = categories;
-	}
 
 	@Override
 	public boolean equals(Object obj) {

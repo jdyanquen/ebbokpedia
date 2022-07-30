@@ -1,7 +1,8 @@
 package com.jcode.ebookpedia.web.dao;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
- 
+import java.util.Collection;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
  
@@ -36,5 +37,13 @@ public abstract class AbstractDao<PK extends Serializable, T> {
     protected void delete(T entity) {
         entityManager.remove(entity);
     }
+    
+    // An alternative to Hibernate.initialize()
+ 	protected void initializeCollection(Collection<?> collection) {
+ 		if (collection == null) {
+ 			return;
+ 		}
+ 		collection.iterator().hasNext();
+ 	}
  
 }
