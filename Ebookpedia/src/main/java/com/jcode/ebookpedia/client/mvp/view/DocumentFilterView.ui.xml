@@ -1,0 +1,84 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.wrap {
+			width: 900px;
+		}
+		
+		.wrap td {
+			padding: 3px;
+		}
+	</ui:style>
+	<g:DisclosurePanel ui:field='advancedSearchPanel'
+		animationEnabled="true" open="true">
+		<g:header>Advanced Search</g:header>
+		<g:HTMLPanel styleName='{style.wrap}'>
+
+			<table width="100%">
+				<tr>
+					<td>
+						<g:Label text="ISBN" />
+					</td>
+					<td>
+						<g:TextBox ui:field='isbnField' width="100px" />
+					</td>
+					<td>
+						<g:Label text="Title" />
+					</td>
+					<td>
+						<g:TextBox ui:field='titleField' />
+					</td>
+					<td>
+						<g:Label text="Author" />
+					</td>
+					<td>
+						<g:TextBox ui:field='authorField' />
+					</td>
+					<td>
+						<g:Label text="Keywords" />
+					</td>
+					<td>
+						<g:TextBox ui:field='keywordsField' />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label text="Edition" />
+					</td>
+					<td>
+						<g:TextBox ui:field='editionField' width="100px" />
+					</td>
+					<td>
+						<g:Label text="Year" />
+					</td>
+					<td>
+						<g:TextBox ui:field='yearField' width="100px" />
+					</td>
+					<td>
+						<g:Label text="Publisher" />
+					</td>
+					<td>
+						<g:TextBox ui:field='publisherField' width="100px" />
+					</td>
+					<td>
+						<g:Label text="File type" />
+					</td>
+					<td>
+						<g:ListBox ui:field='fileTypeField' width="100px" />
+					</td>
+				</tr>
+			</table>
+
+			<g:HorizontalPanel width="100%">
+				<g:Cell horizontalAlignment="ALIGN_RIGHT">
+					<g:Button ui:field="searchButton" text="Search" />
+				</g:Cell>
+				<g:Cell horizontalAlignment="ALIGN_LEFT">
+					<g:Button ui:field="clearButton" text="Clear" />
+				</g:Cell>
+			</g:HorizontalPanel>
+
+		</g:HTMLPanel>
+	</g:DisclosurePanel>
+</ui:UiBinder> 

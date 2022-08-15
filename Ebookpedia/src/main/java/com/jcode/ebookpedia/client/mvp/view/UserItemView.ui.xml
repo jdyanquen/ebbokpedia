@@ -1,0 +1,95 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+
+	<ui:style>
+		.wrap {
+			width: 950px;
+			border: 1px solid rgb(200, 215, 230);
+			margin: 8px;
+			padding: 8px;
+			background-color: rgb(244, 247, 250);
+			-moz-box-shadow: 3px 3px 3px #BBB;
+			-webkit-box-shadow: 3px 3px 3px #BBB;
+		}
+		
+		.wrap:hover {
+			border: 1px solid silver;
+			background-color: rgb(240, 240, 240);
+		}
+		
+		.cover,.info,.status,.edit {
+			margin: 0;
+			padding: 0;
+		}
+		
+		.cover {
+			width: 80px;
+		}
+		
+		.info {
+			width: 400px;
+		}
+		
+		.status {
+			width: 200px;
+		}
+		
+		.other {
+			width: 100px;
+		}
+		
+		.edit,.delete {
+			font-size: 0.9em;
+			font-style: italic;
+			padding-left: 20px;
+			padding-top: 6px;
+			cursor: pointer;
+			color: #0066CC;
+		}
+		
+		.edit:HOVER,.delete:HOVER {
+			text-decoration: underline;
+		}
+		
+		.rating {
+			font-size: 0.8em;
+			padding-left: 35px;
+		}
+	</ui:style>
+
+	<g:HTMLPanel styleName='{style.wrap}'>
+		<g:Grid width="100%">
+			<g:row>
+				<g:customCell styleName='{style.cover}'>
+					<g:Image ui:field="photoImage" />
+				</g:customCell>
+				<g:customCell>
+					<g:VerticalPanel styleName='{style.info}'>
+						<g:HTML ui:field="nameField" />
+						<g:HTML ui:field="emailField" />
+						<g:HTML ui:field="roleField" />
+					</g:VerticalPanel>
+				</g:customCell>
+				<g:customCell>
+					<g:VerticalPanel styleName='{style.status}'>
+						<g:HTML ui:field="memberFromField" />
+						<g:HTML ui:field="lastActivityField" />
+						<g:HTML ui:field="statusField" />
+					</g:VerticalPanel>
+				</g:customCell>
+				<g:customCell>
+					<g:VerticalPanel styleName='{style.other}'>
+						<g:HTML ui:field="ratingField" />
+						<g:Label text="Rating" styleName='{style.rating}' />
+						<g:HorizontalPanel>
+							<g:HTML ui:field="editField" styleName='{style.edit}' />
+							<g:HTML ui:field="deleteField" styleName='{style.delete}' />
+						</g:HorizontalPanel>
+					</g:VerticalPanel>
+				</g:customCell>
+			</g:row>
+		</g:Grid>
+	</g:HTMLPanel>
+</ui:UiBinder> 

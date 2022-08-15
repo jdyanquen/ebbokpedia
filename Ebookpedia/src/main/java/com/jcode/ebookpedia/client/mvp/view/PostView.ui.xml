@@ -1,0 +1,96 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.wrap {
+			margin: 0;
+			padding: 20px;
+			text-align: center;
+			font-size: 1.1em;
+		}
+		
+		.info {
+			margin: 3px;
+			padding: 3px;
+		}
+		
+		.info td {
+			padding: 2px;
+			padding-left: 5px;
+		}
+		
+		.title {
+			font-size: 1.2em;
+			color: #0066CC;
+		}
+		
+		.left {
+			padding-top: 10px;
+			padding-left: 30px;
+			text-align: left;
+		}
+		
+		.qualifyLink {
+			padding-top: 30px;
+			padding-left: 30px;
+			text-align: left;
+			color: #0066CC;
+			width: 110px;
+		}
+		
+		.qualifyLink:HOVER {
+			cursor: pointer;
+			text-decoration: underline;
+		}
+		
+		.bottom {
+			padding: 3px;
+		}
+	</ui:style>
+	<g:HTMLPanel styleName='{style.wrap}'>
+		<table align='center'>
+			<tr>
+				<td>
+					<g:Image ui:field="coverImage" />
+				</td>
+				<td>
+					<g:VerticalPanel styleName='{style.info}'>
+						<g:HTML ui:field="titleHtml" styleName='{style.title}' />
+						<g:HTML ui:field="authorsHtml" />
+						<g:HTML ui:field="isbnHtml" />
+						<g:HTML ui:field="yearHtml" />
+						<g:HTML ui:field="languageHtml" />
+						<g:HorizontalPanel styleName='{style.bottom}'>
+							<g:HTML ui:field="fileTypeHtml" />
+							<g:HTML ui:field="fileSizeHtml" />
+						</g:HorizontalPanel>
+
+					</g:VerticalPanel>
+				</td>
+			</tr>
+		</table>
+
+		<g:HTML ui:field="descriptionHtml" styleName='{style.left}' />
+		<g:HTML ui:field="categoriesHtml" styleName='{style.left}' />
+		<g:HTML ui:field="publisherHtml" styleName='{style.left}' />
+		<g:HTML ui:field="editionHtml" styleName='{style.left}' />
+		<g:HTML ui:field="pagesHtml" styleName='{style.left}' />
+		<g:HTML ui:field="qualityHtml" styleName='{style.left}' />
+		<g:HTML ui:field="fileLinkHtml" styleName='{style.left}' />
+		<g:HTML ui:field="qualifyHtml" styleName='{style.qualifyLink}'
+			text="Qualify this post" />
+
+		<g:HTMLPanel ui:field="commentsPanel" />
+
+		<hr />
+
+		<g:HorizontalPanel width="100%">
+			<g:Cell horizontalAlignment="ALIGN_CENTER">
+				<g:Button ui:field="backButton" text="Back" />
+			</g:Cell>
+			<g:Cell horizontalAlignment="ALIGN_CENTER">
+				<g:Button ui:field="deleteButton" text="Delete" />
+			</g:Cell>
+		</g:HorizontalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

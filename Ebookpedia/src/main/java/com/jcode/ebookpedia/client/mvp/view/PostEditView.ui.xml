@@ -1,0 +1,140 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:app="urn:import:com.jcode.ebookpedia.client.mvp.view"
+	xmlns:d="urn:import:com.google.gwt.dom.client">
+
+	<ui:style>
+		.wrap {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		
+		.wrap td {
+			margin: 0;
+			padding: 5px !important;
+		}
+		
+		.cover {
+			cursor: pointer;
+		}
+		
+		.metadata {
+			cursor: pointer;
+			color: #0066CC;
+		}
+		
+		.metadata:HOVER {
+			text-decoration: underline;
+		}
+	</ui:style>
+
+	<g:HTMLPanel styleName='{style.wrap}'>
+		<center>
+			<table>
+				<tr>
+					<td />
+					<td>
+						<g:Image styleName='{style.cover}' ui:field="coverImage" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label text="ISBN" horizontalAlignment="ALIGN_RIGHT" />
+					</td>
+					<td align="left">
+						<app:TextField ui:field="isbnField" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label text="Title" horizontalAlignment="ALIGN_RIGHT" />
+					</td>
+					<td align="left">
+						<app:TextField ui:field="titleField" width="400px" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label text="Author(s)" horizontalAlignment="ALIGN_RIGHT" />
+					</td>
+					<td align="left">
+						<app:TextField ui:field="authorsField" width="400px" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label text="Description" horizontalAlignment="ALIGN_RIGHT" />
+					</td>
+					<td align="left">
+						<g:TextArea ui:field="descriptionField" width="500px"
+							height="400px" />
+					</td>
+				</tr>
+				<tr>
+					<tr>
+						<td>
+							<g:Label text="Link" horizontalAlignment="ALIGN_RIGHT" />
+						</td>
+						<td align="left">
+							<app:TextField ui:field="linkField" width="400px" />
+							<a href="http://ifile.it" target="_blank">Go to iFIle.it</a>
+						</td>
+					</tr>
+				</tr>
+				<tr>
+					<td>
+						<g:Label text="Quality" horizontalAlignment="ALIGN_RIGHT" />
+					</td>
+					<td align="left">
+						<g:ListBox ui:field="qualityField" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label text="Language" horizontalAlignment="ALIGN_RIGHT" />
+					</td>
+					<td align="left">
+						<g:ListBox ui:field="languageField" width="120px" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label text="File type" horizontalAlignment="ALIGN_RIGHT"
+							width="" />
+					</td>
+					<td align="left">
+						<g:HTML ui:field="fileTypeHtml" width="100px" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<g:Label text="File Size" horizontalAlignment="ALIGN_RIGHT"
+							width="" />
+					</td>
+					<td align="left">
+						<g:HTML ui:field="fileSizeHtml" width="100px" />
+					</td>
+				</tr>
+				<tr>
+					<td />
+					<td>
+						<g:Label text="Edit metadata" ui:field="editMetadataLabel"
+							styleName='{style.metadata}' width="120px" />
+					</td>
+				</tr>
+			</table>
+		</center>
+
+		<hr width="70%" />
+
+		<g:HorizontalPanel width="100%">
+			<g:Cell horizontalAlignment="ALIGN_RIGHT">
+				<g:Button ui:field="saveButton" text="Save" />
+			</g:Cell>
+			<g:Cell horizontalAlignment="ALIGN_LEFT">
+				<g:Button ui:field="cancelButton" text="Cancel" />
+			</g:Cell>
+		</g:HorizontalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

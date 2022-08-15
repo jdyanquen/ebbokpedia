@@ -1,0 +1,22 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.item {
+			margin: 3px;
+			padding: 3px;
+			cursor: pointer;
+		}
+	</ui:style>
+	<g:HTMLPanel width="100%">
+		<center>
+			<g:HorizontalPanel>
+				<g:Image ui:field="first" styleName="{style.item}" />
+				<g:Image ui:field="back" styleName="{style.item}" />
+				<g:Label ui:field="info" styleName="{style.item}" />
+				<g:Image ui:field="next" styleName="{style.item}" />
+				<g:Image ui:field="last" styleName="{style.item}" />
+			</g:HorizontalPanel>
+		</center>
+	</g:HTMLPanel>
+</ui:UiBinder> 

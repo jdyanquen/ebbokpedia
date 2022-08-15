@@ -1,0 +1,54 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.wrap {
+			width: 950px;
+			border: 1px solid rgb(200, 215, 230);
+			margin: 4px;
+			padding: 4px;
+			background-color: rgb(244, 247, 250);
+			-moz-box-shadow: 3px 3px 3px #BBB;
+			-webkit-box-shadow: 3px 3px 3px #BBB;
+		}
+		
+		.cover {
+			margin: 0;
+			padding: 0;
+			width: 80px;
+		}
+		
+		.delete {
+			color: #0066CC;
+			margin-top: 50px;
+			width: 50px;
+		}
+		
+		.delete:HOVER {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+		
+		.message {
+			width: 800px;
+		}
+	</ui:style>
+	<g:HTMLPanel styleName='{style.wrap}'>
+		<g:Grid width="100%">
+			<g:row>
+				<g:customCell styleName='{style.cover}'>
+					<g:Image ui:field="photoImage" />
+				</g:customCell>
+				<g:customCell styleName='{style.message}'>
+					<g:VerticalPanel>
+						<g:HTML ui:field="nicknameField" />
+						<g:HTML ui:field="contentField" />
+					</g:VerticalPanel>
+				</g:customCell>
+				<g:customCell>
+					<g:HTML ui:field="deleteField" styleName='{style.delete}' />
+				</g:customCell>
+			</g:row>
+		</g:Grid>
+	</g:HTMLPanel>
+</ui:UiBinder> 

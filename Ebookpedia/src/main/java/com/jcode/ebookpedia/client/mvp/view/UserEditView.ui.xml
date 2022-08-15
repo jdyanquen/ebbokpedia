@@ -1,0 +1,110 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:app="urn:import:com.jcode.ebookpedia.client.mvp.view"
+	xmlns:ext="urn:import:com.google.gwt.user.datepicker.client">
+	<ui:style>
+		.wrap {
+			padding: 10px;
+			width: 100%;
+		}
+		
+		.info {
+			margin: 3px;
+			padding: 3px;
+		}
+		
+		.info td {
+			padding: 2px;
+			padding-left: 5px;
+		}
+		
+		.photo {
+			cursor: pointer;
+		}
+	</ui:style>
+	<g:HTMLPanel styleName='{style.wrap}'>
+		<table cellSpacing='3' cellPadding='3'>
+			<tr>
+				<td>
+					<g:Image ui:field="photoImage" styleName='{style.photo}' />
+				</td>
+				<td>
+					<g:VerticalPanel styleName='{style.info}'>
+						<g:HTML ui:field="emailHtml" />
+						<g:HTML ui:field="memberFromHtml" />
+						<g:HTML ui:field="ratingHtml" />
+					</g:VerticalPanel>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<g:Label text="First Name" horizontalAlignment="ALIGN_RIGHT" />
+				</td>
+				<td>
+					<app:TextField ui:field="firstNameField" width="200px" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<g:Label text="Last Name" horizontalAlignment="ALIGN_RIGHT" />
+				</td>
+				<td align="left">
+					<app:TextField ui:field="lastNameField" width="200px" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<g:Label text="Web Site URL" horizontalAlignment="ALIGN_RIGHT" />
+				</td>
+				<td align="left">
+					<app:TextField ui:field="webSiteUrlField" width="200px" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<g:Label text="Nickname" horizontalAlignment="ALIGN_RIGHT" />
+				</td>
+				<td align="left">
+					<app:TextField ui:field="nicknameField" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<g:Label text="Birthdate" horizontalAlignment="ALIGN_RIGHT" />
+				</td>
+				<td align="left">
+					<ext:DateBox ui:field="birthdateField" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<g:Label text="Role" horizontalAlignment="ALIGN_RIGHT" />
+				</td>
+				<td align="left">
+					<g:Label ui:field="roleLabel" />
+					<g:ListBox ui:field="roleField" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<g:Label text="Status" horizontalAlignment="ALIGN_RIGHT" />
+				</td>
+				<td align="left">
+					<g:Label ui:field="statusLabel" />
+					<g:ListBox ui:field="statusField" />
+				</td>
+			</tr>
+		</table>
+
+		<hr width="90%" />
+
+		<g:HorizontalPanel width="100%">
+			<g:Cell horizontalAlignment="ALIGN_RIGHT">
+				<g:Button ui:field="saveButton" text="Save" />
+			</g:Cell>
+			<g:Cell horizontalAlignment="ALIGN_LEFT">
+				<g:Button ui:field="cancelButton" text="Cancel" />
+			</g:Cell>
+		</g:HorizontalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 
