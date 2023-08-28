@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='app'>
+  <!-- Inherit our applications main module.                      -->
+  <inherits name='com.jcode.app.App'/>
+
+  <!-- Specify the path to any remote services.                   -->
+  <servlet path="/app/greet" class="com.jcode.app.server.GreetingServiceImpl" />
+
+</module>
