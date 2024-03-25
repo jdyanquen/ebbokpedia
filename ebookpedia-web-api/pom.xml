@@ -15,9 +15,12 @@
 		<jdk.version>1.8</jdk.version>
 		<servletapi.version>3.1.0</servletapi.version>
 		<springframework.version>4.3.0.RELEASE</springframework.version>
+		<springsecurity.version>4.1.1.RELEASE</springsecurity.version>
+		<springsecurityoauth2.version>2.0.10.RELEASE</springsecurityoauth2.version>
 		<hibernate.version>4.3.10.Final</hibernate.version>
 		<slf4j.version>1.7.21</slf4j.version>
 		<jackson.library>2.7.5</jackson.library>
+		<lombok.version>1.18.20</lombok.version>
 		<postgresql.connector.version>42.2.15</postgresql.connector.version>
 	</properties>
 
@@ -102,8 +105,6 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.library}</version>
 		</dependency>
-		<!-- <dependency> <groupId>com.fasterxml.jackson.dataformat</groupId> <artifactId>jackson-dataformat-xml</artifactId> 
-			<version>${jackson.library}</version> </dependency> -->
 		<dependency>
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
@@ -114,6 +115,13 @@
 			<artifactId>jaxb-impl</artifactId>
 			<version>2.3.3</version>
 			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 

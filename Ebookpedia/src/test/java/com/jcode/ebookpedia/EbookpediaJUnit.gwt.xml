@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='ebookpedia'>
+  <!-- Inherit our applications main module.                      -->
+  <inherits name='com.jcode.ebookpedia.Ebookpedia'/>
+
+  <!-- Specify the path to any remote services.                   -->
+  <servlet path="/ebookpedia/greet" class="com.jcode.ebookpedia.server.GreetingServiceImpl" />
+
+</module>

@@ -1,6 +1,5 @@
 package com.jcode.ebookpedia.web.dao;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -30,7 +29,8 @@ public class UserAccountDaoImpl extends AbstractDao<Long, UserAccount> implement
 				initializeCollection(user.getUserProfiles());
 			}
 			return user;
-		} catch (NoResultException ex) {
+		}
+		catch (NoResultException ex) {
 			return null;
 		}
 	}
@@ -50,14 +50,6 @@ public class UserAccountDaoImpl extends AbstractDao<Long, UserAccount> implement
 		UserAccount user = (UserAccount) getEntityManager().createQuery("SELECT u FROM UserAccount u WHERE u.ssoId LIKE :ssoId")
 				.setParameter("ssoId", sso).getSingleResult();
 		delete(user);
-	}
-
-	// An alternative to Hibernate.initialize()
-	protected void initializeCollection(Collection<?> collection) {
-		if (collection == null) {
-			return;
-		}
-		collection.iterator().hasNext();
 	}
 
 }

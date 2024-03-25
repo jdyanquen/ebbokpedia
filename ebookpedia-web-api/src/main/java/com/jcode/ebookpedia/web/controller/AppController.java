@@ -45,7 +45,7 @@ public class AppController {
 	/**
 	 * This method will provide the medium to add a new user.
 	 */
-	@RequestMapping(value = { "/newuser" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/create-user" }, method = RequestMethod.GET)
 	public String newUser(ModelMap model) {
 		UserAccount user = new UserAccount();
 		model.addAttribute("user", user);
@@ -57,7 +57,7 @@ public class AppController {
 	 * This method will be called on form submission, handling POST request for
 	 * saving user in database. It also validates the user input
 	 */
-	@RequestMapping(value = { "/newuser" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/create-user" }, method = RequestMethod.POST)
 	public String saveUser(@Valid UserAccount user, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
