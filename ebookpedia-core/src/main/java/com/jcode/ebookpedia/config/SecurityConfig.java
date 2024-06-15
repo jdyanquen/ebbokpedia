@@ -21,8 +21,8 @@ import com.jcode.ebookpedia.security.JwtAuthenticationFilter;
 import com.jcode.ebookpedia.security.JwtAuthorizationFilter;
 import com.jcode.ebookpedia.user.service.UserAccountService;
 
-@Configuration
 @EnableWebSecurity
+@Configuration
 public class SecurityConfig {
 
 	// Dependencies
@@ -52,7 +52,7 @@ public class SecurityConfig {
 
 		return http.cors().and()
 				.csrf().disable()
-				.authorizeRequests().anyRequest().authenticated().and()
+				.authorizeHttpRequests().anyRequest().authenticated().and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.addFilter(jwtAuthenticationFilter)
 				.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)

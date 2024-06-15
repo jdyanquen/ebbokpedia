@@ -21,7 +21,7 @@ import com.jcode.ebookpedia.criteria.filter.StringFilter;
 public class FilterDeserializer extends JsonDeserializer<Filter> {
 
 	@Override
-	public Filter deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException {
+	public Filter deserialize(JsonParser jsonParser, DeserializationContext context) throws IOException {
 		ObjectMapper mapper = (ObjectMapper) jsonParser.getCodec();
         JsonNode node = mapper.readTree(jsonParser);
         String fieldName = node.get("fieldName").asText();

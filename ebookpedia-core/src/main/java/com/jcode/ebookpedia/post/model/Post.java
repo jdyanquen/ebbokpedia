@@ -51,6 +51,14 @@ public class Post {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
 
 	public UserAccount getCreatedBy() {
 		return createdBy;

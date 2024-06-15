@@ -1,43 +1,43 @@
 package com.jcode.ebookpedia.criteria.filter;
 
 public enum FilterOperator {
-	EQUAL, GREATER_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN, LESS_THAN_OR_EQUAL, NOT_EQUAL, LIKE, IN;	
+	EQ, GT, GE, LT, LE, NE, LK, ANY;	
 	
 	@Override
 	public String toString() {
 		String str = "";
 		switch (this) {
 
-		case EQUAL:
+		case EQ:
 			str = " = ";
 			break;
 
-		case GREATER_THAN:
+		case GT:
 			str = " > ";
 			break;
 
-		case GREATER_THAN_OR_EQUAL:
+		case GE:
 			str = " >= ";
 			break;
 
-		case LESS_THAN:
+		case LT:
 			str = " < ";
 			break;
 
-		case LESS_THAN_OR_EQUAL:
+		case LE:
 			str = " <= ";
 			break;
 
-		case NOT_EQUAL:
+		case NE:
 			str = " != ";
 			break;
 			
-		case LIKE:
-			str = " like ";
+		case LK:
+			str = " LIKE ";
 			break;
 
-		case IN:
-			str = " in ";
+		case ANY:
+			str = " IN ";
 			break;
 		}
 		return str;

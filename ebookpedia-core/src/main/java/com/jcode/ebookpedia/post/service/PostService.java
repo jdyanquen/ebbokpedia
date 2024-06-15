@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jcode.ebookpedia.criteria.Criteria;
 import com.jcode.ebookpedia.criteria.CriteriaMapper;
-import com.jcode.ebookpedia.post.dto.PostDto;
+import com.jcode.ebookpedia.post.dto.PostListingResponse;
 import com.jcode.ebookpedia.post.mapper.PostMapper;
 import com.jcode.ebookpedia.post.model.Post;
 import com.jcode.ebookpedia.post.repository.PostRepository;
@@ -25,21 +25,22 @@ public class PostService {
 	
 	private final CriteriaMapper criteriaMapper;
 	
-	
 	public PostService(PostRepository postRepository, CriteriaMapper criteriaMapper) {
 		this.postRepository = postRepository;
 		this.criteriaMapper = criteriaMapper;
 	}
 	
 	@Transactional(readOnly = true)
-	public List<PostDto> findPosts(String data) {
+	public PostListingResponse findPosts(String data) {
 		String mappedCriteria = this.criteriaMapper.map(Criteria.fromBase64String(data));
 			
 		log.info(mappedCriteria);
 			
 		List<Post> posts = this.postRepository.findPosts(mappedCriteria);
-			
-		return posts.stream().map(PostMapper.INSTANCE::map).collect(Collectors.toList());
+		
+		PostListingResponse response = new PostListingResponse();
+		response.setRecords(posts.stream().map(PostMapper.INSTANCE::map).collect(Collectors.toList()));
+		return response;
 	}
 	
 }

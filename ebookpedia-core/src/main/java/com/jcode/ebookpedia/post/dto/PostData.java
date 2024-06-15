@@ -2,15 +2,15 @@ package com.jcode.ebookpedia.post.dto;
 
 import java.time.ZonedDateTime;
 
-import com.jcode.ebookpedia.user.model.UserAccount;
+import com.jcode.ebookpedia.user.dto.UserData;
 
-public class PostDto {
+public class PostData {
 
 	private Long id;
 	
 	private String summary;
 
-	private UserAccount createdBy;
+	private UserData createdBy;
 
 	private ZonedDateTime createdAt;
 	
@@ -36,11 +36,11 @@ public class PostDto {
 		this.summary = summary;
 	}
 
-	public UserAccount getCreatedBy() {
+	public UserData getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(UserAccount createdBy) {
+	public void setCreatedBy(UserData createdBy) {
 		this.createdBy = createdBy;
 	}
 

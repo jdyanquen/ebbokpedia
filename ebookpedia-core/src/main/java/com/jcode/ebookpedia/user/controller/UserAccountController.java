@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jcode.ebookpedia.user.dto.UserDto;
+import com.jcode.ebookpedia.user.dto.UserData;
 import com.jcode.ebookpedia.user.model.UserAccount;
 import com.jcode.ebookpedia.user.service.UserAccountService;
 
@@ -32,7 +32,7 @@ public class UserAccountController {
 
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
-    public List<UserDto> getAllUserAccounts() {
+    public List<UserData> getAllUserAccounts() {
         return userAccountService.findAll();
     }
 
@@ -46,7 +46,7 @@ public class UserAccountController {
     }
 
     @PostMapping
-    public void saveUserAccount(@RequestBody UserDto userData) {
+    public void saveUserAccount(@RequestBody UserData userData) {
         userAccountService.save(userData);
     }
 }

@@ -29,13 +29,13 @@ import java.util.Set;
  * 
  * @version $Id$
  */
-public class UserDto {
+public class UserData {
 
     private String id;
     private String username;
     private Set<UserProfileDto> userProfiles;
     
-	public UserDto() {
+	public UserData() {
 		super();
 	}
 

@@ -24,9 +24,10 @@
 package com.jcode.ebookpedia.user.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-import com.jcode.ebookpedia.user.dto.UserDto;
+import com.jcode.ebookpedia.user.dto.UserData;
 import com.jcode.ebookpedia.user.model.UserAccount;
 
 /**
@@ -37,7 +38,9 @@ public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    UserDto map(UserAccount userAccount);
+    UserData map(UserAccount userAccount);
     
-    UserAccount map(UserDto userData);
+    @Mapping(target = "password", ignore = true)
+    UserAccount map(UserData userData);
+    
 }

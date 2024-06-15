@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jcode.ebookpedia.user.dto.UserDto;
+import com.jcode.ebookpedia.user.dto.UserData;
 import com.jcode.ebookpedia.user.mapper.UserDetailsMapper;
 import com.jcode.ebookpedia.user.mapper.UserMapper;
 import com.jcode.ebookpedia.user.model.UserAccount;
@@ -50,7 +50,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Transactional
     @Override
-    public UserAccount save(UserDto userData) {
+    public UserAccount save(UserData userData) {
     	UserAccount userAccount = UserMapper.INSTANCE.map(userData);
         userAccount.setPassword(passwordEncoder.encode(userAccount.getPassword()));
         return userRepository.save(userAccount);
@@ -58,7 +58,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<UserDto> findAll() {
+    public List<UserData> findAll() {
         List<UserAccount> users = userRepository.findAll(); 
         return users.stream().map(UserMapper.INSTANCE::map).collect(Collectors.toList());
     }

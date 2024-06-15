@@ -26,7 +26,7 @@ package com.jcode.ebookpedia.post.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-import com.jcode.ebookpedia.post.dto.PostDto;
+import com.jcode.ebookpedia.post.dto.PostData;
 import com.jcode.ebookpedia.post.model.Post;
 
 
@@ -35,6 +35,6 @@ public interface PostMapper {
 
 	PostMapper INSTANCE = Mappers.getMapper(PostMapper.class);
 
-	PostDto map(Post post);
+	PostData map(Post post);
 	
 }

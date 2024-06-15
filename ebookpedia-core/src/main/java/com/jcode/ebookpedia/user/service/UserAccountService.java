@@ -5,16 +5,16 @@ import java.util.Optional;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import com.jcode.ebookpedia.user.dto.UserDto;
+import com.jcode.ebookpedia.user.dto.UserData;
 import com.jcode.ebookpedia.user.model.UserAccount;
 
 public interface UserAccountService extends UserDetailsService {
 
     Optional<UserAccount> getUserAccount(long id);
 
-    UserAccount save(UserDto user);
+    UserAccount save(UserData user);
 
-    List<UserDto> findAll();
+    List<UserData> findAll();
 
     Optional<UserAccount> findByUsername(String username);
 }
