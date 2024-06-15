@@ -134,18 +134,19 @@ public class Main implements EntryPoint {
 				
 						
 				UserService userService = GWT.create(UserService.class);
-				Resource userResource = new Resource("http://127.0.0.1:8080/fesol/v1/users");
+				Resource userResource = new Resource("http://localhost:8080/ebookpedia/v1/users");
 		        ((RestServiceProxy) userService).setResource(userResource);
 		        
 		        userService.findAll(token, new MethodCallback<List<UserDto>>() {
 					@Override
 					public void onFailure(Method method, Throwable exception) {
 						// Show the RPC error message to the user
-						dialogBox.setText("Remote Procedure Call - Failure [" + userResource.getPath() + "]");
+						dialogBox.setText("Remote Procedure Call - Failure [" + userResource.getPath() + "]. Status: " + method.getResponse().getStatusCode());
 						serverResponseLabel.addStyleName("serverResponseLabelError");
 						serverResponseLabel.setHTML(SERVER_ERROR);
 						dialogBox.center();
 						closeButton.setFocus(true);
+						
 					}
 
 					@Override

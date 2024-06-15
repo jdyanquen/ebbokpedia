@@ -102,7 +102,7 @@ span.psw {
 	<script type="text/javascript">
 	
 		validateLogin = function() {
-			const url = 'http://localhost:8080/fesol/login';
+			const url = 'http://localhost:8080/ebookpedia/login';
 			const config = {
 			  headers: {
 			    'Content-Type': 'application/x-www-form-urlencoded'
@@ -115,7 +115,7 @@ span.psw {
 			axios.post(url, params, config)
 			  .then((response) => {
 				  localStorage.setItem('Token', response.headers['authorization']);
-				  window.location.href = "/main.html";
+				  window.location.href = "/index.html";
 			  })
 			  .catch((error) => {
 				  let errorType = 'unknown'
