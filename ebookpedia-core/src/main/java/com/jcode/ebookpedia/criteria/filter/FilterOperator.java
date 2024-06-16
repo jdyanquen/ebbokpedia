@@ -1,7 +1,7 @@
 package com.jcode.ebookpedia.criteria.filter;
 
 public enum FilterOperator {
-	EQ, GT, GE, LT, LE, NE, LK, ANY;	
+	EQ, GT, GE, LT, LE, NE, LK, NLK, ANY, INVERSE_IN;	
 	
 	@Override
 	public String toString() {
@@ -9,35 +9,43 @@ public enum FilterOperator {
 		switch (this) {
 
 		case EQ:
-			str = " = ";
+			str = "=";
 			break;
 
 		case GT:
-			str = " > ";
+			str = ">";
 			break;
 
 		case GE:
-			str = " >= ";
+			str = ">=";
 			break;
 
 		case LT:
-			str = " < ";
+			str = "<";
 			break;
 
 		case LE:
-			str = " <= ";
+			str = "<=";
 			break;
 
 		case NE:
-			str = " != ";
+			str = "!=";
 			break;
 			
 		case LK:
-			str = " LIKE ";
+			str = "LIKE";
+			break;
+		
+		case NLK:
+			str = "NOT LIKE";
 			break;
 
 		case ANY:
-			str = " IN ";
+			str = "IN";
+			break;
+		
+		case INVERSE_IN:
+			str = "INVERSE_IN";
 			break;
 		}
 		return str;

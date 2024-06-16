@@ -42,7 +42,7 @@ public class FilterDeserializer extends JsonDeserializer<Filter> {
         }
         else if (value.isTextual()) {
         	try {
-        		return new ZonedDateTimeFilter(fieldName, comparison, ZonedDateTime.parse(value.asText(), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        		return new ZonedDateTimeFilter(fieldName, comparison, ZonedDateTime.parse(value.asText(), DateTimeFormatter.ISO_DATE_TIME));
         	}
         	catch (DateTimeParseException ex) {
         		return new StringFilter(fieldName, comparison, value.asText());	

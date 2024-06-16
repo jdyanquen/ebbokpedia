@@ -6,8 +6,7 @@ public class NumberFilter extends AbstractFilter<Number> {
 	protected NumberFilter() {
 	}
 
-	public NumberFilter(String fieldName, FilterOperator comparison,
-			Number value) {
+	public NumberFilter(String fieldName, FilterOperator comparison, Number value) {
 		super(fieldName, comparison, value);
 	}
 

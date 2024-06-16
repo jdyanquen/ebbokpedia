@@ -12,8 +12,7 @@ public class StringFilter extends AbstractFilter<String> {
 	protected StringFilter() {
 	}
 
-	public StringFilter(String fieldName, FilterOperator comparison,
-			String value) {
+	public StringFilter(String fieldName, FilterOperator comparison, String value) {
 		super(fieldName, comparison, value);
 	}
 	
