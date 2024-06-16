@@ -20,6 +20,14 @@
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
+	<mvc:annotation-driven>
+	    <mvc:message-converters register-defaults="false">
+	        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+	            <property name="objectMapper" ref="objectMapper"/>
+	        </bean>
+	    </mvc:message-converters>
+	</mvc:annotation-driven>
+	
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="packagesToScan" value="com.jcode.ebookpedia" />
 		<property name="dataSource" ref="dataSource" />
@@ -59,6 +67,9 @@
 	<bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
+	<bean id="passwordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+		
 	<bean id="objectMapper" class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
 		<property name="modulesToInstall" value="com.fasterxml.jackson.datatype.jsr310.JavaTimeModule" />
 		<property name="dateFormat">
@@ -68,11 +79,4 @@
 	    </property>
 	</bean>
 	
-	<mvc:annotation-driven>
-	    <mvc:message-converters register-defaults="false">
-	        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-	            <property name="objectMapper" ref="objectMapper"/>
-	        </bean>
-	    </mvc:message-converters>
-	</mvc:annotation-driven>
 </beans>

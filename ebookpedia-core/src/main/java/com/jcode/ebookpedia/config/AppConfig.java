@@ -5,11 +5,9 @@ import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,11 +24,6 @@ import com.jcode.ebookpedia.criteria.sort.Sort.Direction;
 @Configuration
 @ComponentScan({ "com.jcode.ebookpedia" })
 public class AppConfig {
-
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 
 	public static void main(String[] args) throws JsonProcessingException {
 		System.out.println(UUID.randomUUID());
