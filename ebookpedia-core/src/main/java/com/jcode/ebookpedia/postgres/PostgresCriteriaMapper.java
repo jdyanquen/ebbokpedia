@@ -28,7 +28,7 @@ public class PostgresCriteriaMapper implements CriteriaMapper {
 			return "";
 		}
 		else if (object instanceof String || object instanceof Number || object instanceof Boolean || object instanceof Enum) {
-			return object.toString();
+			return object.toString().replace("'", "''");
 		}
 		else if (object instanceof ZonedDateTime) {
 			return ((ZonedDateTime)object).format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));

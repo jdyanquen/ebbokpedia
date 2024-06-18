@@ -40,6 +40,7 @@ INSERT INTO USER_ACCOUNT_USER_PROFILE(user_account_id, user_profile_id) VALUES (
 INSERT INTO USER_ACCOUNT_USER_PROFILE(user_account_id, user_profile_id) VALUES ('3', 3);
 
 
+CREATE EXTENSION hstore;
 
 CREATE TYPE public."filter" AS (
 	"fieldName" text,
@@ -59,30 +60,7 @@ CREATE TYPE public.criteria AS (
 	sorts sort[],
 	page page);
 
-CREATE TYPE public.field_alias AS (
-	field text,
-	alias text);
-
-
-CREATE OR REPLACE FUNCTION public.fn_get_alias_for_field(field_to_alias _field_alias, p_field text)
- RETURNS TEXT
- LANGUAGE plpgsql
-AS $function$
-DECLARE
-	v_field_alias field_alias;
-BEGIN
-	FOREACH v_field_alias IN ARRAY field_to_alias
-	LOOP
-		IF (v_field_alias.field = p_field) THEN
-			RETURN v_field_alias.alias;
-		END IF;
-	END LOOP;
-	RAISE EXCEPTION 'There isn''t any alias for the given field'; 
-END;
-$function$
-;
-
-CREATE OR REPLACE FUNCTION public.fn_build_where(filters filter[], field_to_alias field_alias[])
+CREATE OR REPLACE FUNCTION public.fn_build_where(p_filters filter[], p_field_to_alias hstore)
  RETURNS TEXT
  LANGUAGE plpgsql
 AS $function$
@@ -90,20 +68,53 @@ DECLARE
 	v_conditions TEXT := 'WHERE 1=1 ';
 	v_filter FILTER;
 	v_alias TEXT;
+	v_operator_patterns hstore;
+	v_pattern TEXT;
+	v_value TEXT;
+
 BEGIN
-	IF (filters IS NOT NULL) THEN
-		FOREACH v_filter IN ARRAY filters
+	
+	v_operator_patterns := '
+		"EQ"  => " %s = %L ",
+		"NE"  => " %s != %L ",
+		"GT"  => " %s > %L ",
+		"GE"  => " %s >= %L ",
+		"LT"  => " %s < %L ",
+		"LE"  => " %s <= %L ",
+		"IN"  => " %s IS NULL ",
+		"NN"  => " %s IS NOT NULL ",
+		"SW"  => " %s LIKE %L ",
+		"EW"  => " %s LIKE %L ",
+		"CN"  => " %s LIKE %L ",
+		"NC"  => " %s NOT LIKE %L ",
+		"ANY" => " %s = ANY(%L) ",
+		"REV" => " %L IN (%s) ",
+	'::hstore;
+	
+	IF (p_filters IS NOT NULL) THEN
+		FOREACH v_filter IN ARRAY p_filters
 		LOOP
-			IF v_filter.value IS NOT NULL AND TRIM(v_filter.value) <> '' THEN
-				v_alias := fn_get_alias_for_field(field_to_alias, v_filter."fieldName");
-				IF (v_filter."filterOperator" IN ('LIKE', 'NOT LIKE')) THEN
-					v_conditions := v_conditions || chr(13) || FORMAT('AND %s %s ''%%%s%%''', v_alias, v_filter."filterOperator", TRIM(v_filter."value"));
-				
-				ELSIF (v_filter."filterOperator" = 'INVERSE_IN') THEN
-					v_conditions := v_conditions || chr(13) || FORMAT('AND %L IN (%s)', TRIM(v_filter."value"), v_filter."filterOperator", v_alias);
-				
+			SELECT p_field_to_alias -> v_filter."fieldName"
+			INTO v_alias;
+			
+			SELECT v_operator_patterns -> v_filter."filterOperator"
+			INTO v_pattern;
+			
+			v_value := TRIM(v_filter."value");
+			
+			IF v_filter."filterOperator" IN ('EW' ,'CT', 'NC') THEN
+				v_value := '%' || v_value; 
+			END IF;
+		
+			IF v_filter."filterOperator" IN ('SW' ,'CT', 'NC') THEN
+				v_value := v_value || '%'; 
+			END IF;
+		
+			IF v_alias IS NOT NULL AND v_pattern IS NOT NULL THEN
+				IF (v_filter."filterOperator" = 'REV') THEN
+					v_conditions := v_conditions || chr(13) || 'AND' || FORMAT(v_pattern, v_value, v_alias);
 				ELSE
-					v_conditions := v_conditions || chr(13) || FORMAT('AND %s %s %L', v_alias, v_filter."filterOperator", TRIM(v_filter."value"));
+					v_conditions := v_conditions || chr(13) || 'AND' || FORMAT(v_pattern, v_alias, v_value);
 				END IF;
 			END IF;
 		END LOOP;
@@ -112,6 +123,7 @@ BEGIN
 END;
 $function$
 ;
+
 
 
 CREATE OR REPLACE FUNCTION public.find_posts(criteria criteria)
@@ -128,15 +140,14 @@ DECLARE
 	
 	v_count TEXT := 'SELECT COUNT(1)';
 	v_total_records INTEGER := 0; 
-	v_field_to_alias field_alias[];
+	v_field_to_alias hstore;
 	
 BEGIN
 	
-	v_field_to_alias := ARRAY[
-		('sumary', 'p.summary'),
-		('score', 'p.score'),
-		('createdAt', 'p.created_at')
-	];
+	v_field_to_alias := '
+		"sumary"    => "p.summary",
+		"score"     => "p.score",
+		"createdAt" => "p.created_at"'::hstore;
 	
 	v_select := chr(13) || 'SELECT 
 		p.id, 
@@ -167,7 +178,6 @@ BEGIN
 END;
 $function$
 ;
-
-
-SELECT public.find_posts('(\{\\\(sumary\\\,LIKE\\\,pring\\\)\,\\\(score\\\,>=\\\,4\\\)\,\\\(createdAt\\\,<\\\,2024/06/16 18:03:39.382 -0500\\\)\},\{\\\(createdAt\\\,DESC\\\)\},\(0\,50\))');
+ 
+SELECT public.find_posts('(\{\\\(sumary\\\,CT\\\,JD''s\\\)\,\\\(score\\\,GE\\\,4\\\)\,\\\(createdAt\\\,LT\\\,2024/06/17 20:28:05.209 -0500\\\)\},\{\\\(createdAt\\\,DESC\\\)\},\(0\,50\))');
 

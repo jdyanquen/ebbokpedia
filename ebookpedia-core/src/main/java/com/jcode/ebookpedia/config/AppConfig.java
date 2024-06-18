@@ -33,7 +33,7 @@ public class AppConfig {
 		System.out.println("Passwd: " + new BCryptPasswordEncoder().encode("123"));
 
 		List<Filter> filters = new ArrayList<>();
-		filters.add(new StringFilter("sumary", FilterOperator.LK, "pring"));
+		filters.add(new StringFilter("sumary", FilterOperator.CN, "pring"));
 		filters.add(new NumberFilter("score", FilterOperator.GE, 4));
 		filters.add(new ZonedDateTimeFilter("createdAt", FilterOperator.LT, ZonedDateTime.now()));
 
