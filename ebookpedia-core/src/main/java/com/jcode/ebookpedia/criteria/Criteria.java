@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.jcode.ebookpedia.criteria.filter.Filter;
 import com.jcode.ebookpedia.criteria.page.Page;
 import com.jcode.ebookpedia.criteria.sort.Sort;
@@ -49,6 +51,8 @@ public class Criteria {
 	public static Criteria fromBase64String(String base64String) {
 		String jsonString = new String(Base64.getUrlDecoder().decode(base64String));
 		ObjectMapper mapper = new ObjectMapper();
+		mapper.registerModule(new JavaTimeModule());
+		mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 	    try {
 			return mapper.readValue(jsonString, Criteria.class);
 		} catch (JsonProcessingException ex) {

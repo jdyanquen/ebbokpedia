@@ -40,8 +40,6 @@ INSERT INTO USER_ACCOUNT_USER_PROFILE(user_account_id, user_profile_id) VALUES (
 INSERT INTO USER_ACCOUNT_USER_PROFILE(user_account_id, user_profile_id) VALUES ('3', 3);
 
 
-CREATE EXTENSION hstore;
-
 CREATE TYPE public."filter" AS (
 	"fieldName" text,
 	"filterOperator" text,
@@ -60,7 +58,7 @@ CREATE TYPE public.criteria AS (
 	sorts sort[],
 	page page);
 
-CREATE OR REPLACE FUNCTION public.fn_build_where(p_filters filter[], p_field_to_alias hstore)
+CREATE OR REPLACE FUNCTION public.fn_build_where(p_filters filter[], p_field_to_alias JSON)
  RETURNS TEXT
  LANGUAGE plpgsql
 AS $function$
@@ -68,36 +66,36 @@ DECLARE
 	v_conditions TEXT := 'WHERE 1=1 ';
 	v_filter FILTER;
 	v_alias TEXT;
-	v_operator_patterns hstore;
+	v_operator_patterns JSON;
 	v_pattern TEXT;
 	v_value TEXT;
 
 BEGIN
 	
-	v_operator_patterns := '
-		"EQ"  => " %s = %L ",
-		"NE"  => " %s != %L ",
-		"GT"  => " %s > %L ",
-		"GE"  => " %s >= %L ",
-		"LT"  => " %s < %L ",
-		"LE"  => " %s <= %L ",
-		"IN"  => " %s IS NULL ",
-		"NN"  => " %s IS NOT NULL ",
-		"SW"  => " %s LIKE %L ",
-		"EW"  => " %s LIKE %L ",
-		"CN"  => " %s LIKE %L ",
-		"NC"  => " %s NOT LIKE %L ",
-		"ANY" => " %s = ANY(%L) ",
-		"REV" => " %L IN (%s) ",
-	'::hstore;
+	v_operator_patterns := '{
+		"EQ"  : " %s = %L ",
+		"NE"  : " %s != %L ",
+		"GT"  : " %s > %L ",
+		"GE"  : " %s >= %L ",
+		"LT"  : " %s < %L ",
+		"LE"  : " %s <= %L ",
+		"IN"  : " %s IS NULL ",
+		"NN"  : " %s IS NOT NULL ",
+		"SW"  : " %s LIKE %L ",
+		"EW"  : " %s LIKE %L ",
+		"CN"  : " %s LIKE %L ",
+		"NC"  : " %s NOT LIKE %L ",
+		"ANY" : " %s = ANY(%L) ",
+		"REV" : " %L IN (%s) "
+	}'::JSON;
 	
 	IF (p_filters IS NOT NULL) THEN
 		FOREACH v_filter IN ARRAY p_filters
 		LOOP
-			SELECT p_field_to_alias -> v_filter."fieldName"
+			SELECT p_field_to_alias ->> v_filter."fieldName"
 			INTO v_alias;
 			
-			SELECT v_operator_patterns -> v_filter."filterOperator"
+			SELECT v_operator_patterns ->> v_filter."filterOperator"
 			INTO v_pattern;
 			
 			v_value := TRIM(v_filter."value");
@@ -124,7 +122,7 @@ END;
 $function$
 ;
 
-
+-- DROP FUNCTION public.find_posts(criteria);
 
 CREATE OR REPLACE FUNCTION public.find_posts(criteria criteria)
  RETURNS TABLE(id bigint, created_at timestamp without time zone, score integer, summary text, views integer, voters_counter integer, created_by_user_account_id bigint, total_records integer)
@@ -140,14 +138,15 @@ DECLARE
 	
 	v_count TEXT := 'SELECT COUNT(1)';
 	v_total_records INTEGER := 0; 
-	v_field_to_alias hstore;
+	v_field_to_alias json;
 	
 BEGIN
 	
-	v_field_to_alias := '
-		"sumary"    => "p.summary",
-		"score"     => "p.score",
-		"createdAt" => "p.created_at"'::hstore;
+	v_field_to_alias := '{
+		"sumary"    : "p.summary",
+		"score"     : "p.score",
+		"createdAt" : "p.created_at"
+	}'::json;
 	
 	v_select := chr(13) || 'SELECT 
 		p.id, 
