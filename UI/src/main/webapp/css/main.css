@@ -1,0 +1,158 @@
+/** BASIC */
+*:focus,:active {
+	outline: 0;
+}
+
+#body {
+	background: #f7f4ff url(../images/bg.jpg) repeat-x scroll left top;
+	font-family: Tahoma, Geneva, sans-serif;
+	text-align: center;
+}
+
+#wrap {
+	clear: both;
+	width: 977px;
+	padding-top: 20px;
+	margin: 0px auto;
+	text-align: left;
+}
+
+#header,#content,#footer {
+	clear: both;
+	width: 100%;
+}
+
+/** Improve tab panel */
+.tab-panel {
+	margin: 0;
+	padding: 0;
+	width: 977px;
+	background-color: white;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border-radius: 7px;
+	-moz-box-shadow: 5px 5px 5px #BBB;
+	-webkit-box-shadow: 5px 5px 5px #BBB;
+	box-shadow: 5px 5px 5px #BBB;
+	-ms-filter:
+		"progid:DXImageTransform.Microsoft.Shadow(color=#C0C0C0,direction=125,strength=5)";
+	filter: progid:DXImageTransform.Microsoft.Shadow(color=#C0C0C0,
+		direction=125, strength=5 );
+}
+
+.tab-panel .gwt-TabBar {
+	background: none repeat scroll 0 0 #CCC;
+	padding-top: 7px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border-radius: 7px;
+}
+
+.tab-panel .gwt-TabPanelBottom {
+	border-style: none;
+	border-width: 0;
+	overflow: hidden;
+	padding: 10px;
+}
+
+/** My text field */
+.errorTextField {
+	border: 1px solid red !important;
+	background: white url("../images/warning.png") no-repeat right center;
+}
+
+.gwt-Button {
+	margin: 3px !important;
+}
+
+/** File type sprite */
+.fileTypeChm,.fileTypeDjvu,.fileTypePub,.fileTypeR,.fileTypePdf,.fileTypeMobi,.fileTypeNone
+	{
+	width: 16px;
+	height: 16px;
+}
+
+.fileTypeChm {
+	background: url(../images/file_types.png) right 0 no-repeat;
+}
+
+.fileTypeDjvu {
+	background: url(../images/file_types.png) right -36px no-repeat;
+}
+
+.fileTypeEpub {
+	background: url(../images/file_types.png) right -72px no-repeat;
+}
+
+.fileTypeR {
+	background: url(../images/file_types.png) right -108px no-repeat;
+}
+
+.fileTypePdf {
+	background: url(../images/file_types.png) right -144px no-repeat;
+}
+
+.fileTypeMobi {
+	background: url(../images/file_types.png) right -176px no-repeat;
+}
+
+.fileTypeNone {
+	background: url(../images/file_types.png) right -208px no-repeat;
+}
+
+/** Rating sprite */
+.no-stars,.one-star,.two-stars,.three-stars,.four-stars,.five-stars {
+	width: 100px;
+	height: 20px;
+	margin: 0;
+	padding: 0;
+}
+
+.no-stars {
+	background: url(../images/rating.png) -100px center no-repeat;
+}
+
+.one-star {
+	background: url(../images/rating.png) -80px center no-repeat;
+}
+
+.two-stars {
+	background: url(../images/rating.png) -60px center no-repeat;
+}
+
+.three-stars {
+	background: url(../images/rating.png) -40px center no-repeat;
+}
+
+.four-stars {
+	background: url(../images/rating.png) -20px center no-repeat;
+}
+
+.five-stars {
+	background: url(../images/rating.png) 0 center no-repeat;
+}
+
+.loading-popup {
+	color: white;
+	font-family: sans-serif;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.chat,.loading {
+	background: white;
+	text-align: center;
+	padding: 20px;
+}
+
+.loading {
+	background: url(../images/chat-loader.gif) no-repeat center center;
+}
+
+.categories {
+	text-align: left;
+}
+
+.qualifyPanel tr,.qualifyPanel td {
+	padding: 4px;
+}

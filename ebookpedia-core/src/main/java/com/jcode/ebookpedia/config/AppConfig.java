@@ -50,7 +50,7 @@ public class AppConfig {
 
 		System.out.println(">>>>>");
 
-		System.out.println("q=" + Base64.getUrlEncoder().encodeToString(jsonString.getBytes()));
+		System.out.println("data=" + Base64.getUrlEncoder().encodeToString(jsonString.getBytes()));
 
 		System.out.println("<<<<<");
 	}

@@ -100,11 +100,11 @@ BEGIN
 			
 			v_value := TRIM(v_filter."value");
 			
-			IF v_filter."filterOperator" IN ('EW' ,'CT', 'NC') THEN
+			IF v_filter."filterOperator" IN ('EW' ,'CN', 'NC') THEN
 				v_value := '%' || v_value; 
 			END IF;
 		
-			IF v_filter."filterOperator" IN ('SW' ,'CT', 'NC') THEN
+			IF v_filter."filterOperator" IN ('SW' ,'CN', 'NC') THEN
 				v_value := v_value || '%'; 
 			END IF;
 		
@@ -178,5 +178,5 @@ END;
 $function$
 ;
  
-SELECT public.find_posts('(\{\\\(sumary\\\,CT\\\,JD''s\\\)\,\\\(score\\\,GE\\\,4\\\)\,\\\(createdAt\\\,LT\\\,2024/06/17 20:28:05.209 -0500\\\)\},\{\\\(createdAt\\\,DESC\\\)\},\(0\,50\))');
+SELECT public.find_posts('(\{\\\(sumary\\\,CN\\\,pring\\\)\,\\\(score\\\,GE\\\,4\\\)\,\\\(createdAt\\\,LT\\\,2024/08/17 11:57:07.210 -0500\\\)\},\{\\\(createdAt\\\,DESC\\\)\},\(0\,50\))');
 

@@ -1,0 +1,44 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+	<ui:style>
+		.wrap {
+			clear: both;
+			margin: 0;
+			padding: 0;
+			min-width: 977px;
+		}
+		
+		.signLink,.account,.nickname {
+			float: right;
+			padding: 0 15px;
+		}
+		
+		.nickname {
+			cursor: default;
+			font-weight: bold;
+		}
+		
+		.account {
+			background: url("images/config.png") no-repeat left top;
+			padding-left: 20px;
+			color: #0066CC;
+		}
+		
+		.account:HOVER {
+			cursor: pointer;
+			text-decoration: underline;
+		}
+	</ui:style>
+
+	<g:HTMLPanel styleName='{style.wrap}'>
+		<span>
+			<g:HTML ui:field="signLink" styleName='{style.signLink}' />
+		</span>
+		<span>
+			<g:HTML ui:field="account" styleName='{style.account}' />
+			<g:HTML ui:field="nickname" styleName='{style.nickname}' />
+		</span>
+	</g:HTMLPanel>
+</ui:UiBinder> 

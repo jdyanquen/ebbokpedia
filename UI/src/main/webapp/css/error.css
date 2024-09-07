@@ -1,0 +1,18 @@
+body {
+	margin: 0px auto;
+	padding: 0px;
+	background: #f7f4ff url(../images/bg.jpg) repeat-x scroll left top;
+	font-family: arial, tahoma, helvetica, sans-serif;
+	font-size: 11pt;
+	text-align: center;
+	color: #222222;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	padding-top: 25px;
+	font-weight: normal;
+}
+
+img {
+	padding-top: 50px;
+}
