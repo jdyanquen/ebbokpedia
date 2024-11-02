@@ -1,3 +1,6 @@
+CREATE DATABASE ebookpedia;
+CREATE USER app WITH ENCRYPTED PASSWORD 'T0pS3cr3t!';
+
 
 
 CREATE TABLE user_account (

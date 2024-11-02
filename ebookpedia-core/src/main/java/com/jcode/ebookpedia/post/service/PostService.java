@@ -1,7 +1,6 @@
 package com.jcode.ebookpedia.post.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jcode.ebookpedia.criteria.Criteria;
 import com.jcode.ebookpedia.criteria.CriteriaMapper;
+import com.jcode.ebookpedia.post.dto.PostData;
 import com.jcode.ebookpedia.post.dto.PostListingResponse;
-import com.jcode.ebookpedia.post.mapper.PostMapper;
-import com.jcode.ebookpedia.post.model.Post;
 import com.jcode.ebookpedia.post.repository.PostRepository;
 
 
@@ -36,10 +34,12 @@ public class PostService {
 			
 		log.info(mappedCriteria);
 			
-		List<Post> posts = this.postRepository.findPosts(mappedCriteria);
+		List<PostData> posts = this.postRepository.findPosts(mappedCriteria);
 		
 		PostListingResponse response = new PostListingResponse();
-		response.setRecords(posts.stream().map(PostMapper.INSTANCE::map).collect(Collectors.toList()));
+		response.setTotalRecords((long)posts.size());
+		response.setRecords(posts);
+		//response.setRecords(posts.stream().map(PostMapper.INSTANCE::map).collect(Collectors.toList()));
 		return response;
 	}
 	
